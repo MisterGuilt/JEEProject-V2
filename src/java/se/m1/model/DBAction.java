@@ -154,7 +154,6 @@ public class DBAction {
             st.execute(); 
             System.out.println("Data Successful");
             st.close();
-            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
         }
