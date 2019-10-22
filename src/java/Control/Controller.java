@@ -21,8 +21,6 @@ import se.m1.Employee;
  *
  * @author JAA
  */
-
-        
 public class Controller extends HttpServlet {
     DBAction dba;
      User userInput;
@@ -65,24 +63,32 @@ public class Controller extends HttpServlet {
         else if (request.getParameter("addbutton") != null)
         {
             myEmployee = new Employee();
-            myEmployee.setName(FRM_EMPLOYEE_NAME);
-            myEmployee.setFirstname(FRM_EMPLOYEE_FIRSTNAME);
-            myEmployee.setHomePhone(FRM_EMPLOYEE_TELHOME);
-            myEmployee.setMobilePhone(FRM_EMPLOYEE_TELMOB);
-            myEmployee.setProPhone(FRM_EMPLOYEE_TELPRO);
-            myEmployee.setAddress(FRM_EMPLOYEE_ADRESS);
-            myEmployee.setPostalCode(FRM_EMPLOYEE_POSTALCODE);
-            myEmployee.setCity(FRM_EMPLOYEE_CITY);
-            myEmployee.setMail(FRM_EMPLOYEE_EMAIL);
+            myEmployee.setName(request.getParameter(FRM_EMPLOYEE_NAME));
+            myEmployee.setFirstname(request.getParameter(FRM_EMPLOYEE_FIRSTNAME));
+            myEmployee.setHomePhone(request.getParameter(FRM_EMPLOYEE_TELHOME));
+            myEmployee.setMobilePhone(request.getParameter(FRM_EMPLOYEE_TELMOB));
+            myEmployee.setProPhone(request.getParameter(FRM_EMPLOYEE_TELPRO));
+            myEmployee.setAddress(request.getParameter(FRM_EMPLOYEE_ADRESS));
+            myEmployee.setPostalCode(request.getParameter(FRM_EMPLOYEE_POSTALCODE));
+            myEmployee.setCity(request.getParameter(FRM_EMPLOYEE_CITY));
+            myEmployee.setMail(request.getParameter(FRM_EMPLOYEE_EMAIL));
             
             dba.AddEmployee(myEmployee);
-            PrintWriter out = response.getWriter(); 
-            out.println("<html><body><b>Successfully Inserted"
-                        + "</b></body></html>"); 
-            
-                    
+            request.setAttribute("empList", dba.getEmployees());
+            request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
         }
-        
+        else if (request.getParameter("detail") !=null)
+        {
+            myEmployee = new Employee();
+            myEmployee.setId(request.getParameter(FRM_EMPLOYEE_ID));
+            request.setAttribute("empList", dba.getAnEmployees(myEmployee));
+            request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
+        }
+        else if (request.getParameter("cancel") != null)
+        {
+            request.setAttribute("empList", dba.getEmployees());
+             request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+        }
         
     }
 

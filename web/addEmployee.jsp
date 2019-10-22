@@ -108,38 +108,9 @@
             <label for="Address"><b>Email</b></label>
             <input type="text" placeholder="Enter the Email" name='email' required>
             <hr>
-
-=======
-
-            <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="Enter Name" name='name' required>
-
-            <label for="firstname"><b>First Name</b></label>
-            <input type="text" placeholder="Enter First Name" name='firstname' required>
-
-            <label for="telHome"><b>Home Phone</b></label>
-            <input type="text" placeholder="Enter Home Phone Number" name='homephone' required>
-            
-            <label for="telMobile"><b>Mobile Phone</b></label>
-            <input type="text" placeholder="Enter Mobile Phone Number" name='mobilephone' required>
-            
-            <label for="telMobile"><b>Mobile Pro</b></label>
-            <input type="text" placeholder="Enter Professional Phone Number" name='mobilepro' required>
-            
-            <label for="Address"><b>Address</b></label>
-            <input type="text" placeholder="Enter the Address" name='address' required>
-            
-            <label for="Address"><b>Zip Code</b></label>
-            <input type="text" placeholder="Enter the Zip Code" name='zipcode' required>
-            
-            <label for="Address"><b>City</b></label>
-            <input type="text" placeholder="Enter the City" name='city' required>
-            
-            <label for="Address"><b>Email</b></label>
-            <input type="text" placeholder="Enter the Email" name='email' required>
-            <hr>
-            <form method='post' name='myform' action='Controller'>
             <button type="submit" name="addbutton" class="registerbtn">Add Button</button>
+           </form>
+            <form method='post' name='myform' action='Controller'>
             <button type="submit" name="cancel" class="registerbtn">Cancel</button>
             </form>
         </div>

@@ -99,7 +99,7 @@ public class DBAction {
        public ArrayList<Employee> getAnEmployees(Employee anEmployee) {
         listEmployees = new ArrayList<>();
         System.out.println(anEmployee.getId());
-        String rst = "SELECT * from EMPLOYEES WHERE id='" + anEmployee.getId()+"'";
+        String rst = "SELECT * from EMPLOYEES WHERE id=" + anEmployee.getId()+"";
         
         rs = getResultSet(rst);
         try {
