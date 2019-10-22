@@ -87,6 +87,7 @@
             <h1>Details of the Employee ${employee.name}  ${employee.firstname}</h1>
             <hr>
            <form method='post' name='myform' action='Controller'>
+               <input type="hidden" placeholder="${employee.id}" name='id' disabled>
             <label for="name"><b>Name</b></label>
             <input type="text" placeholder="${employee.name}" name='name' disabled>
 
@@ -94,30 +95,30 @@
             <input type="text" placeholder="${employee.firstname}" name='firstname' disabled>
 
             <label for="telHome"><b>Home Phone</b></label>
-            <input type="text" placeholder="${employee.city}" name='homephone' required>
+            <input type="text" placeholder="${employee.city}" name='homephone' >
             
             <label for="telMobile"><b>Mobile Phone</b></label>
-            <input type="text" placeholder="${employee.email}" name='mobilephone' required>
+            <input type="text" placeholder="${employee.mail}" name='mobilephone' >
             
             <label for="telMobile"><b>Mobile Pro</b></label>
-            <input type="text" placeholder="Enter Professional Phone Number" name='mobilepro' required>
+            <input type="text" placeholder="Enter Professional Phone Number" name='mobilepro' >
             
             <label for="Address"><b>Address</b></label>
-            <input type="text" placeholder="Enter the Address" name='address' required>
+            <input type="text" placeholder="Enter the Address" name='address'>
             
             <label for="Address"><b>Zip Code</b></label>
-            <input type="text" placeholder="Enter the Zip Code" name='zipcode' required>
+            <input type="text" placeholder="Enter the Zip Code" name='zipcode'>
             
             <label for="Address"><b>City</b></label>
-            <input type="text" placeholder="Enter the City" name='city' required>
+            <input type="text" placeholder="Enter the City" name='city'>
             
             <label for="Address"><b>Email</b></label>
-            <input type="text" placeholder="Enter the Email" name='email' required>
+            <input type="text" placeholder="Enter the Email" name='email'>
             
              </c:forEach>
             <hr>
 
-            <button type="submit" name="addbutton" class="registerbtn">Add Button</button>
+            <button type="submit" name="addbutton" class="registerbtn">Save</button>
             <button type="submit" name="cancel" class="registerbtn">Cancel</button>
             </form>
         </div>

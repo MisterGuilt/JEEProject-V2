@@ -25,12 +25,12 @@
     <body>
         <h1> Welcome to JEE LEGENDS !!</h1>
         
-        <form action="">
+            <form method='post' name='myform' action='Controller'>
             
             <table border="1" class="table">
                 <thead
                 <tr>
-                     <td><input type="radio" name="id" value=""/></td>
+                     <td><b>Selection</b></td>
                     <td><b>Name</b></td>
                     <td><b>First Name</b></td>
                     <td><b>City</b></td>
@@ -55,9 +55,7 @@
             
             
             
-            
-        </form>
-        <form method='post' name='myform' action='Controller'>
+       
             <input type="submit" name="add" value="Add Employee">
             <input type="submit" name="detail" value="Detail">
             <input type="submit" name="delete" value="Delete">

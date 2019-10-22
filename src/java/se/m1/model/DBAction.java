@@ -82,6 +82,7 @@ public class DBAction {
         try {
             while (rs.next()) {
                 Employee emplBean = new Employee();
+                emplBean.setId(rs.getString("ID"));
                 emplBean.setFirstname(rs.getString("FIRSTNAME"));
                 emplBean.setName(rs.getString("NAME"));
                 emplBean.setAddress(rs.getString("ADRESS"));
@@ -153,6 +154,17 @@ public class DBAction {
             
             st.execute(); 
             System.out.println("Data Successful");
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deleteEmployee(Employee anEmployee) {
+
+        try {
+            String rst = "DELETE from EMPLOYEES WHERE id=" + anEmployee.getId()+"";
+            PreparedStatement st = conn.prepareStatement(rst);           
+            st.execute(); 
             st.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
