@@ -165,6 +165,7 @@ public class DBAction {
             String rst = "DELETE from EMPLOYEES WHERE id=" + anEmployee.getId()+"";
             PreparedStatement st = conn.prepareStatement(rst);           
             st.execute(); 
+            st.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
         }
