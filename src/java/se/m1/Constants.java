@@ -44,4 +44,7 @@ public class Constants {
     //Add an employee
     public static final String QUERY_ADD_EMPLOYEES = "INSERT INTO JEE.EMPLOYEES (NAME, FIRSTNAME, TELHOME, TELMOB, TELPRO, ADRESS, POSTALCODE, CITY, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
+    //Update an employee record
+    public static final String QUERY_UPDATE_EMPLOYEE = "UPDATE JEE.EMPLOYEES SET NAME = ?, FIRSTNAME = ?, TELHOME = ?, TELMOB = ?, TELPRO = ?, ADRESS = ?, POSTALCODE = ?, CITY = ?, EMAIL = ? WHERE ID = ?";
+    
 }

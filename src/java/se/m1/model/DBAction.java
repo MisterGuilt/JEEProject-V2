@@ -158,5 +158,27 @@ public class DBAction {
             Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void UpdateEmployee(Employee aEmployee)
+    {
+         try {
+            PreparedStatement st = conn.prepareStatement(QUERY_UPDATE_EMPLOYEE);
+            st.setString(1, aEmployee.getName());
+            st.setString(2, aEmployee.getFirstname());
+            st.setString(3, aEmployee.getHomePhone());
+            st.setString(4, aEmployee.getMobilePhone());
+            st.setString(5, aEmployee.getProPhone());
+            st.setString(6, aEmployee.getAddress());
+            st.setString(7, aEmployee.getPostalCode());
+            st.setString(8, aEmployee.getCity());
+            st.setString(9, aEmployee.getMail());
+            st.setString(10, aEmployee.getId());
+            st.execute(); 
+            System.out.println("Data Successful");
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
