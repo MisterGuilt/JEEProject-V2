@@ -17,7 +17,7 @@ import static se.m1.Constants.*;
 import se.m1.Employee;
 
 /**
- *  test2
+ *  ceci est un test
  * @author JAA
  */
 public class Controller extends HttpServlet {
