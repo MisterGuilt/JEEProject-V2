@@ -86,6 +86,15 @@ public class Controller extends HttpServlet {
              request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
         }
         
+        else if (request.getParameter("delete") != null)
+        {
+            myEmployee = new Employee();
+            myEmployee.setId(request.getParameter(FRM_EMPLOYEE_ID));
+            dba.deleteEmployee(myEmployee);
+            request.setAttribute("empList", dba.getEmployees());
+            request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
