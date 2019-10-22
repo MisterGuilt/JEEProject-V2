@@ -95,6 +95,29 @@ public class DBAction {
         }
         return listEmployees;
     }
+    
+       public ArrayList<Employee> getAnEmployees(Employee anEmployee) {
+        listEmployees = new ArrayList<>();
+        System.out.println(anEmployee.getId());
+        String rst = "SELECT * from EMPLOYEES WHERE id=" + anEmployee.getId()+"";
+        
+        rs = getResultSet(rst);
+        try {
+            while (rs.next()) {
+                Employee emplBean = new Employee();
+                emplBean.setFirstname(rs.getString("FIRSTNAME"));
+                emplBean.setName(rs.getString("NAME"));
+                emplBean.setAddress(rs.getString("ADRESS"));
+                emplBean.setCity(rs.getString("CITY"));
+                emplBean.setMail(rs.getString("EMAIL"));
+
+                listEmployees.add(emplBean);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listEmployees;
+    }
 
     /**
      *

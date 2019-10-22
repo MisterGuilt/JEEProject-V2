@@ -20,8 +20,13 @@ public class Constants {
     public static final String JSP_HOME_PAGE = "home.jsp";
     public static final String JSP_WELCOME_PAGE = "welcome.jsp";
     public static final String JSP_ADD_PAGE = "addEmployee.jsp";
+    public static final String JSP_DETAIL_PAGE = "detailEmployee.jsp";
     public static final String FRM_LOGIN_FIELD = "loginField";
     public static final String FRM_PWD_FIELD = "pwdField";
+    
+    //Get the ID of the EMployee
+    
+    public static final String FRM_EMPLOYEE_ID = "id";
     
     
     //For the Employee Formular

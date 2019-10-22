@@ -41,7 +41,7 @@
                 <tr>
                     <c:forEach items="${empList}" var="employee"> 
                     <tr>
-                        <td><input type="radio" name="id" value=""/></td>
+                        <td><input type="radio" name="id" value="${employee.id}"/></td>
                         <td>${employee.name}</td>
                         <td>${employee.firstname}</td>
                         <td>${employee.city}</td>
@@ -59,6 +59,8 @@
         </form>
         <form method='post' name='myform' action='Controller'>
             <input type="submit" name="add" value="Add Employee">
+            <input type="submit" name="detail" value="Detail">
+            <input type="submit" name="delete" value="Delete">
         </form>
 
     </body>

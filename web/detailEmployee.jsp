@@ -1,8 +1,14 @@
 <%-- 
-    Document   : addEmployee
-    Created on : 15 oct. 2019, 10:13:19
+    Document   : detailEmployee
+    Created on : 22 oct. 2019, 08:04:45
     Author     : Anil DEVADAS
 --%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="se.m1.User"%>
+<%@page import="se.m1.Employee"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -77,21 +83,21 @@
     </head>
     <body>
          <div class="container">
-            <h1>Add an Employee</h1>
-            <p>Please fill the form to add a new employee</p>
+             <c:forEach items="${empList}" var="employee"> 
+            <h1>Details of the Employee ${employee.name}  ${employee.firstname}</h1>
             <hr>
            <form method='post' name='myform' action='Controller'>
             <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="Enter Name" name='name' required>
+            <input type="text" placeholder="${employee.name}" name='name' disabled>
 
             <label for="firstname"><b>First Name</b></label>
-            <input type="text" placeholder="Enter First Name" name='firstname' required>
+            <input type="text" placeholder="${employee.firstname}" name='firstname' disabled>
 
             <label for="telHome"><b>Home Phone</b></label>
-            <input type="text" placeholder="Enter Home Phone Number" name='homephone' required>
+            <input type="text" placeholder="${employee.city}" name='homephone' required>
             
             <label for="telMobile"><b>Mobile Phone</b></label>
-            <input type="text" placeholder="Enter Mobile Phone Number" name='mobilephone' required>
+            <input type="text" placeholder="${employee.email}" name='mobilephone' required>
             
             <label for="telMobile"><b>Mobile Pro</b></label>
             <input type="text" placeholder="Enter Professional Phone Number" name='mobilepro' required>
@@ -107,10 +113,11 @@
             
             <label for="Address"><b>Email</b></label>
             <input type="text" placeholder="Enter the Email" name='email' required>
+            
+             </c:forEach>
             <hr>
+
             <button type="submit" name="addbutton" class="registerbtn">Add Button</button>
-           </form>
-            <form method='post' name='myform' action='Controller'>
             <button type="submit" name="cancel" class="registerbtn">Cancel</button>
             </form>
         </div>
