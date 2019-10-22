@@ -17,23 +17,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Employee Management Project</title>
-        <style>
-            
-                    /* Full-width input fields */
-        input[type=text], input[type=password] {
-          width: 100%;
-          padding: 15px;
-          margin: 5px 0 22px 0;
-          display: inline-block;
-          border: none;
-          background: #f1f1f1;
-        }
-
-        input[type=text]:focus, input[type=password]:focus {
-          background-color: #ddd;
-          outline: none;
-        }
-        </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -42,12 +25,12 @@
     <body>
         <h1> Welcome to JEE LEGENDS !!</h1>
         
-          <form method='post' name='myform' action='Controller'>
+        <form action="">
             
             <table border="1" class="table">
                 <thead
                 <tr>
-                     <td></td>
+                     <td><input type="radio" name="id" value=""/></td>
                     <td><b>Name</b></td>
                     <td><b>First Name</b></td>
                     <td><b>City</b></td>
@@ -58,7 +41,7 @@
                 <tr>
                     <c:forEach items="${empList}" var="employee"> 
                     <tr>
-                        <td><input type="radio" name="id" value="${employee.id}"></</td>
+                        <td><input type="radio" name="id" value=""/></td>
                         <td>${employee.name}</td>
                         <td>${employee.firstname}</td>
                         <td>${employee.city}</td>
@@ -70,13 +53,13 @@
                 </tbody>
             </table>
             
-            <input type="submit" name="add" value="Add Employee">
-            <input type="submit" name="detail" value="Detail">
-            <input type="submit" name="delete" value="Delete">
+            
             
             
         </form>
-      
+        <form method='post' name='myform' action='Controller'>
+            <input type="submit" name="add" value="Add Employee">
+        </form>
 
     </body>
 </html>
