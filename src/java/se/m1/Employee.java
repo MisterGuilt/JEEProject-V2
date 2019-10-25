@@ -11,7 +11,7 @@ package se.m1;
  */
 public class Employee {
 
-    private String id;
+    private int id;
     private String name;
     private String firstname;
     private String homePhone;
@@ -22,11 +22,11 @@ public class Employee {
     private String city;
     private String mail;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -35,8 +35,8 @@ public class Constants {
     public static final String FRM_EMPLOYEE_TELHOME = "homephone";
     public static final String FRM_EMPLOYEE_TELMOB = "mobilephone";
     public static final String FRM_EMPLOYEE_TELPRO = "mobilepro";
-    public static final String FRM_EMPLOYEE_ADRESS = "address";
-    public static final String FRM_EMPLOYEE_POSTALCODE = "zipcode";
+    public static final String FRM_EMPLOYEE_ADDRESS = "address";
+    public static final String FRM_EMPLOYEE_POSTALCODE = "postalcode";
     public static final String FRM_EMPLOYEE_CITY = "city";
     public static final String FRM_EMPLOYEE_EMAIL = "email";
        

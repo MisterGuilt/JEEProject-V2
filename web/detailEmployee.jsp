@@ -83,42 +83,38 @@
     </head>
     <body>
          <div class="container">
-             <c:forEach items="${empList}" var="employee"> 
             <h1>Details of the Employee ${employee.name}  ${employee.firstname}</h1>
             <hr>
-           <form method='post' name='myform' action='Controller'>
-               <input type="hidden" placeholder="${employee.id}" name='id' disabled>
-            <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="${employee.name}" name='name' disabled>
+            <form method='post' name='myform' action='Controller'>
+                 <input type="number" value="${employee.id}" name='id' hidden>
+                 <label for="name"><b>Name</b></label>
+                 <input type="text" value="${employee.name}" name='name'>
 
-            <label for="firstname"><b>First Name</b></label>
-            <input type="text" placeholder="${employee.firstname}" name='firstname' disabled>
+                 <label for="firstname"><b>First Name</b></label>
+                 <input type="text" value="${employee.firstname}" name='firstname'>
 
-            <label for="telHome"><b>Home Phone</b></label>
-            <input type="text" placeholder="${employee.city}" name='homephone' >
-            
-            <label for="telMobile"><b>Mobile Phone</b></label>
-            <input type="text" placeholder="${employee.mail}" name='mobilephone' >
-            
-            <label for="telMobile"><b>Mobile Pro</b></label>
-            <input type="text" placeholder="Enter Professional Phone Number" name='mobilepro' >
-            
-            <label for="Address"><b>Address</b></label>
-            <input type="text" placeholder="Enter the Address" name='address'>
-            
-            <label for="Address"><b>Zip Code</b></label>
-            <input type="text" placeholder="Enter the Zip Code" name='zipcode'>
-            
-            <label for="Address"><b>City</b></label>
-            <input type="text" placeholder="Enter the City" name='city'>
-            
-            <label for="Address"><b>Email</b></label>
-            <input type="text" placeholder="Enter the Email" name='email'>
-            
-             </c:forEach>
+                 <label for="telHome"><b>Home Phone</b></label>
+                 <input type="text" value="${employee.homePhone}" name='homephone'>
+
+                 <label for="telMobile"><b>Mobile Phone</b></label>
+                 <input type="text" value="${employee.mobilePhone}" name='mobilephone' >
+
+                 <label for="telMobile"><b>Mobile Pro</b></label>
+                 <input type="text" value="${employee.proPhone}" name='mobilepro' >
+
+                 <label for="Address"><b>Address</b></label>
+                 <input type="text" value="${employee.address}" name='address'>
+
+                 <label for="Address"><b>Postal Code</b></label>
+                 <input type="text" value="${employee.postalCode}" name='postalcode'>
+
+                 <label for="Address"><b>City</b></label>
+                 <input type="text" value="${employee.city}" name='city'>
+
+                 <label for="Address"><b>Email</b></label>
+                 <input type="text" value="${employee.mail}" name='email'>
             <hr>
-
-            <button type="submit" name="addbutton" class="registerbtn">Save</button>
+            <button type="submit" name="update" class="registerbtn">Save</button>
             <button type="submit" name="cancel" class="registerbtn">Cancel</button>
             </form>
         </div>

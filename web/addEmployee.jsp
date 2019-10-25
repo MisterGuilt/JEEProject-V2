@@ -99,8 +99,8 @@
             <label for="Address"><b>Address</b></label>
             <input type="text" placeholder="Enter the Address" name='address' required>
             
-            <label for="Address"><b>Zip Code</b></label>
-            <input type="text" placeholder="Enter the Zip Code" name='zipcode' required>
+            <label for="Address"><b>Postal Code</b></label>
+            <input type="text" placeholder="Enter the Postal Code" name='postalcode' required>
             
             <label for="Address"><b>City</b></label>
             <input type="text" placeholder="Enter the City" name='city' required>
@@ -108,9 +108,7 @@
             <label for="Address"><b>Email</b></label>
             <input type="text" placeholder="Enter the Email" name='email' required>
             <hr>
-            <button type="submit" name="addbutton" class="registerbtn">Add Button</button>
-           </form>
-            <form method='post' name='myform' action='Controller'>
+            <button type="submit" name="addbutton" class="registerbtn">Add Employee</button>
             <button type="submit" name="cancel" class="registerbtn">Cancel</button>
             </form>
         </div>

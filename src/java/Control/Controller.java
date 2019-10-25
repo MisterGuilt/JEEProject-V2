@@ -17,8 +17,6 @@ import static se.m1.Constants.*;
 import se.m1.Employee;
 
 /**
- *  ceci est un test
- * test2
  * @author JAA
  */
 
@@ -39,6 +37,21 @@ public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         dba = new DBAction();
+        
+        System.out.println("TEST value of ID in form :"+request.getParameter(FRM_EMPLOYEE_ID));
+        System.out.println("TEST value of NAME in form :"+request.getParameter(FRM_EMPLOYEE_NAME));
+        System.out.println("TEST value of FIRSTNAME in form :"+request.getParameter(FRM_EMPLOYEE_FIRSTNAME));
+        System.out.println("TEST value of TELHOME in form :"+request.getParameter(FRM_EMPLOYEE_TELHOME));
+        System.out.println("TEST value of TELMOB in form :"+request.getParameter(FRM_EMPLOYEE_TELMOB));
+        System.out.println("TEST value of TELPRO in form :"+request.getParameter(FRM_EMPLOYEE_TELPRO));
+        System.out.println("TEST value of ADDRESS in form :"+request.getParameter(FRM_EMPLOYEE_ADDRESS));
+        System.out.println("TEST value of POSTALCODE in form :"+request.getParameter(FRM_EMPLOYEE_POSTALCODE));
+        System.out.println("TEST value of CITY in form :"+request.getParameter(FRM_EMPLOYEE_CITY));
+        System.out.println("TEST value of EMAIL in form :"+request.getParameter(FRM_EMPLOYEE_EMAIL));
+        
+        
+        
+        
         
         String action = request.getParameter("action");
         
@@ -69,7 +82,7 @@ public class Controller extends HttpServlet {
             myEmployee.setHomePhone(request.getParameter(FRM_EMPLOYEE_TELHOME));
             myEmployee.setMobilePhone(request.getParameter(FRM_EMPLOYEE_TELMOB));
             myEmployee.setProPhone(request.getParameter(FRM_EMPLOYEE_TELPRO));
-            myEmployee.setAddress(request.getParameter(FRM_EMPLOYEE_ADRESS));
+            myEmployee.setAddress(request.getParameter(FRM_EMPLOYEE_ADDRESS));
             myEmployee.setPostalCode(request.getParameter(FRM_EMPLOYEE_POSTALCODE));
             myEmployee.setCity(request.getParameter(FRM_EMPLOYEE_CITY));
             myEmployee.setMail(request.getParameter(FRM_EMPLOYEE_EMAIL));
@@ -78,11 +91,10 @@ public class Controller extends HttpServlet {
             request.setAttribute("empList", dba.getEmployees());
             request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
         }
-        else if (request.getParameter("detail") !=null)
+        else if (request.getParameter("detail") != null)
         {
-            myEmployee = new Employee();
-            myEmployee.setId(request.getParameter(FRM_EMPLOYEE_ID));
-            request.setAttribute("empList", dba.getAnEmployees(myEmployee));
+            int employeeId = Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID));
+            request.setAttribute("employee", dba.getOneEmployee(employeeId));
             request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
         }
         else if (request.getParameter("cancel") != null)
@@ -94,12 +106,29 @@ public class Controller extends HttpServlet {
         else if (request.getParameter("delete") != null)
         {
             myEmployee = new Employee();
-            myEmployee.setId(request.getParameter(FRM_EMPLOYEE_ID));
+            myEmployee.setId(Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID)));
             dba.deleteEmployee(myEmployee);
             request.setAttribute("empList", dba.getEmployees());
             request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
         }
-        
+        else if (request.getParameter("update") != null)
+        {
+            myEmployee = new Employee();
+            String test = request.getParameter(FRM_EMPLOYEE_ID);
+            myEmployee.setId(Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID)));
+            myEmployee.setName(request.getParameter(FRM_EMPLOYEE_NAME));
+            myEmployee.setFirstname(request.getParameter(FRM_EMPLOYEE_FIRSTNAME));
+            myEmployee.setHomePhone(request.getParameter(FRM_EMPLOYEE_TELHOME));
+            myEmployee.setMobilePhone(request.getParameter(FRM_EMPLOYEE_TELMOB));
+            myEmployee.setProPhone(request.getParameter(FRM_EMPLOYEE_TELPRO));
+            myEmployee.setAddress(request.getParameter(FRM_EMPLOYEE_ADDRESS));
+            myEmployee.setPostalCode(request.getParameter(FRM_EMPLOYEE_POSTALCODE));
+            myEmployee.setCity(request.getParameter(FRM_EMPLOYEE_CITY));
+            myEmployee.setMail(request.getParameter(FRM_EMPLOYEE_EMAIL));
+            dba.updateEmployee(myEmployee);
+            request.setAttribute("empList", dba.getEmployees());
+            request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

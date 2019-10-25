@@ -33,6 +33,11 @@
                      <td><b>Selection</b></td>
                     <td><b>Name</b></td>
                     <td><b>First Name</b></td>
+                    <td><b>Home Phone</b></td>
+                    <td><b>Mobile Phone</b></td>
+                    <td><b>Work Phone</b></td>
+                    <td><b>Address</b></td>
+                    <td><b>Postal Code</b></td>
                     <td><b>City</b></td>
                     <td><b>Email</b></td>
                 </tr>
@@ -44,6 +49,11 @@
                         <td><input type="radio" name="id" value="${employee.id}"/></td>
                         <td>${employee.name}</td>
                         <td>${employee.firstname}</td>
+                        <td>${employee.homePhone}</td>
+                        <td>${employee.mobilePhone}</td>
+                        <td>${employee.proPhone}</td>
+                        <td>${employee.address}</td>
+                        <td>${employee.postalCode}</td>
                         <td>${employee.city}</td>
                         <td>${employee.mail}</td>
                     </tr>
