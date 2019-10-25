@@ -81,15 +81,18 @@ public class DBAction {
         rs = getResultSet(QUERY_SEL_EMPLOYEES);
         try {
             while (rs.next()) {
-                Employee emplBean = new Employee();
-                emplBean.setId(rs.getString("ID"));
-                emplBean.setFirstname(rs.getString("FIRSTNAME"));
-                emplBean.setName(rs.getString("NAME"));
-                emplBean.setAddress(rs.getString("ADRESS"));
-                emplBean.setCity(rs.getString("CITY"));
-                emplBean.setMail(rs.getString("EMAIL"));
-
-                listEmployees.add(emplBean);
+                Employee oneEmployee = new Employee();
+                oneEmployee.setId(rs.getInt("ID"));
+                oneEmployee.setName(rs.getString("NAME"));
+                oneEmployee.setFirstname(rs.getString("FIRSTNAME"));
+                oneEmployee.setHomePhone(rs.getString("TELHOME"));
+                oneEmployee.setMobilePhone(rs.getString("TELMOB"));
+                oneEmployee.setProPhone(rs.getString("TELPRO"));
+                oneEmployee.setAddress(rs.getString("ADRESS"));
+                oneEmployee.setPostalCode(rs.getString("POSTALCODE"));
+                oneEmployee.setCity(rs.getString("CITY"));
+                oneEmployee.setMail(rs.getString("EMAIL"));
+                listEmployees.add(oneEmployee);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -97,27 +100,27 @@ public class DBAction {
         return listEmployees;
     }
     
-       public ArrayList<Employee> getAnEmployees(Employee anEmployee) {
-        listEmployees = new ArrayList<>();
-        System.out.println(anEmployee.getId());
-        String rst = "SELECT * from EMPLOYEES WHERE id=" + anEmployee.getId()+"";
-        
+       public Employee getOneEmployee(int employeeId) {
+        String rst = "SELECT * from EMPLOYEES WHERE id=" + employeeId;
+        Employee specificEmployee = new Employee();
         rs = getResultSet(rst);
         try {
-            while (rs.next()) {
-                Employee emplBean = new Employee();
-                emplBean.setFirstname(rs.getString("FIRSTNAME"));
-                emplBean.setName(rs.getString("NAME"));
-                emplBean.setAddress(rs.getString("ADRESS"));
-                emplBean.setCity(rs.getString("CITY"));
-                emplBean.setMail(rs.getString("EMAIL"));
-
-                listEmployees.add(emplBean);
-            }
+            rs.next();
+            
+            specificEmployee.setId(rs.getInt("ID"));
+            specificEmployee.setName(rs.getString("NAME"));
+            specificEmployee.setFirstname(rs.getString("FIRSTNAME"));
+            specificEmployee.setHomePhone(rs.getString("TELHOME"));
+            specificEmployee.setMobilePhone(rs.getString("TELMOB"));
+            specificEmployee.setProPhone(rs.getString("TELPRO"));
+            specificEmployee.setAddress(rs.getString("ADRESS"));
+            specificEmployee.setPostalCode(rs.getString("POSTALCODE"));
+            specificEmployee.setCity(rs.getString("CITY"));
+            specificEmployee.setMail(rs.getString("EMAIL"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return listEmployees;
+        return specificEmployee;
     }
 
     /**
@@ -171,7 +174,7 @@ public class DBAction {
         }
     }
     
-    public void UpdateEmployee(Employee aEmployee)
+    public void updateEmployee(Employee aEmployee)
     {
          try {
             PreparedStatement st = conn.prepareStatement(QUERY_UPDATE_EMPLOYEE);
@@ -184,7 +187,7 @@ public class DBAction {
             st.setString(7, aEmployee.getPostalCode());
             st.setString(8, aEmployee.getCity());
             st.setString(9, aEmployee.getMail());
-            st.setString(10, aEmployee.getId());
+            st.setInt(10, aEmployee.getId());
             st.execute(); 
             System.out.println("Data Successful");
             st.close();
