@@ -11,15 +11,16 @@ package se.m1;
  */
 public class User {
     
-    private String login;
+    private String username;
     private String pwd;
+    private String rank;
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -28,6 +29,20 @@ public class User {
 
     public void setPassword(String pwd) {
         this.pwd = pwd;
+    }
+
+    /**
+     * @return the rank
+     */
+    public String getRank() {
+        return rank;
+    }
+
+    /**
+     * @param rank the rank to set
+     */
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
    

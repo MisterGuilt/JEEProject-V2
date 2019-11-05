@@ -82,33 +82,33 @@
             <hr>
            <form method='post' name='myform' action='Controller'>
             <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="Enter Name" name='name' required>
+            <input type="text" placeholder="Enter Name" name='name'>
 
             <label for="firstname"><b>First Name</b></label>
-            <input type="text" placeholder="Enter First Name" name='firstname' required>
+            <input type="text" placeholder="Enter First Name" name='firstname'>
 
-            <label for="telHome"><b>Home Phone</b></label>
-            <input type="text" placeholder="Enter Home Phone Number" name='homephone' required>
+            <label for="homephone"><b>Home Phone</b></label>
+            <input type="text" placeholder="Enter Home Phone Number" name='homephone'>
             
-            <label for="telMobile"><b>Mobile Phone</b></label>
-            <input type="text" placeholder="Enter Mobile Phone Number" name='mobilephone' required>
+            <label for="mobilephone"><b>Mobile Phone</b></label>
+            <input type="text" placeholder="Enter Mobile Phone Number" name='mobilephone'>
             
-            <label for="telMobile"><b>Mobile Pro</b></label>
-            <input type="text" placeholder="Enter Professional Phone Number" name='mobilepro' required>
+            <label for="mobilepro"><b>Mobile Pro</b></label>
+            <input type="text" placeholder="Enter Professional Phone Number" name='mobilepro'>
             
-            <label for="Address"><b>Address</b></label>
-            <input type="text" placeholder="Enter the Address" name='address' required>
+            <label for="address"><b>Address</b></label>
+            <input type="text" placeholder="Enter the Address" name='address'>
             
-            <label for="Address"><b>Postal Code</b></label>
-            <input type="text" placeholder="Enter the Postal Code" name='postalcode' required>
+            <label for="postalcode"><b>Postal Code</b></label>
+            <input type="text" placeholder="Enter the Postal Code" name='postalcode'>
             
-            <label for="Address"><b>City</b></label>
-            <input type="text" placeholder="Enter the City" name='city' required>
+            <label for="city"><b>City</b></label>
+            <input type="text" placeholder="Enter the City" name='city'>
             
-            <label for="Address"><b>Email</b></label>
-            <input type="text" placeholder="Enter the Email" name='email' required>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter the Email" name='email'>
             <hr>
-            <button type="submit" name="addbutton" class="registerbtn">Add Employee</button>
+            <button type="submit" name="addbutton" class="registerbtn" ${(user.rank != "admin") ? "disabled" : ''}>Add Employee</button>
             <button type="submit" name="cancel" class="registerbtn">Cancel</button>
             </form>
         </div>

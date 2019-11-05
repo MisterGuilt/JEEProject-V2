@@ -18,14 +18,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Employee Management Project</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1> Welcome to JEE LEGENDS !!</h1>
-        
-            <form method='post' name='myform' action='Controller'>
+        <form method='post' name='myform' action='Controller'>
+        <h1 style="float:left;"> Welcome, <c:out value="${user.username} (${user.rank})"/></h1>
+        <h1 style="float:right;">Log Out<button type="submit" name="logout"><i class="material-icons">power_settings_new</i></button></h1>
             
             <table border="1" class="table">
                 <thead
@@ -57,18 +58,15 @@
                         <td>${employee.city}</td>
                         <td>${employee.mail}</td>
                     </tr>
-                </c:forEach>
+                    </c:forEach>
                     
                 </tr>
                 </tbody>
             </table>
-            
-            
-            
        
-            <input type="submit" name="add" value="Add Employee">
+            <input type="submit" name="add" value="Add Employee" ${(user.rank != "admin") ? "disabled" : ''}>
             <input type="submit" name="detail" value="Detail">
-            <input type="submit" name="delete" value="Delete">
+            <input type="submit" name="delete" value="Delete" ${(user.rank != "admin") ? "disabled" : ''}>
         </form>
 
     </body>

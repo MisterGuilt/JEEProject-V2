@@ -17,11 +17,11 @@ public class Constants {
     public static final String SEL_QUERY_CREDENTIALS = "SELECT * from CREDENTIALS";
     public static final String ERR_MESSAGE = "Invalid credentials";
     public static final String QUERY_SEL_EMPLOYEES = "SELECT * from EMPLOYEES";
-    public static final String JSP_HOME_PAGE = "home.jsp";
-    public static final String JSP_WELCOME_PAGE = "welcome.jsp";
-    public static final String JSP_ADD_PAGE = "addEmployee.jsp";
-    public static final String JSP_DETAIL_PAGE = "detailEmployee.jsp";
-    public static final String FRM_LOGIN_FIELD = "loginField";
+    public static final String JSP_HOME_PAGE = "/WEB-INF/home.jsp";
+    public static final String JSP_WELCOME_PAGE = "/WEB-INF/welcome.jsp";
+    public static final String JSP_ADD_PAGE = "/WEB-INF/addEmployee.jsp";
+    public static final String JSP_DETAIL_PAGE = "/WEB-INF/detailEmployee.jsp";
+    public static final String FRM_USERNAME_FIELD = "loginField";
     public static final String FRM_PWD_FIELD = "pwdField";
     
     //Get the ID of the EMployee

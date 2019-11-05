@@ -88,33 +88,33 @@
             <form method='post' name='myform' action='Controller'>
                  <input type="number" value="${employee.id}" name='id' hidden>
                  <label for="name"><b>Name</b></label>
-                 <input type="text" value="${employee.name}" name='name'>
+                 <input type="text" value="${employee.name}" name='name' ${(user.rank != "admin") ? "readonly" : ''}>
 
                  <label for="firstname"><b>First Name</b></label>
-                 <input type="text" value="${employee.firstname}" name='firstname'>
+                 <input type="text" value="${employee.firstname}" name='firstname' ${(user.rank != "admin") ? "readonly" : ''}>
 
-                 <label for="telHome"><b>Home Phone</b></label>
-                 <input type="text" value="${employee.homePhone}" name='homephone'>
+                 <label for="homephone"><b>Home Phone</b></label>
+                 <input type="text" value="${employee.homePhone}" name='homephone' ${(user.rank != "admin") ? "readonly" : ''}>
 
-                 <label for="telMobile"><b>Mobile Phone</b></label>
-                 <input type="text" value="${employee.mobilePhone}" name='mobilephone' >
+                 <label for="mobilephone"><b>Mobile Phone</b></label>
+                 <input type="text" value="${employee.mobilePhone}" name='mobilephone' ${(user.rank != "admin") ? "readonly" : ''}>
 
-                 <label for="telMobile"><b>Mobile Pro</b></label>
-                 <input type="text" value="${employee.proPhone}" name='mobilepro' >
+                 <label for="mobilepro"><b>Mobile Pro</b></label>
+                 <input type="text" value="${employee.proPhone}" name='mobilepro' ${(user.rank != "admin") ? "readonly" : ''}>
 
-                 <label for="Address"><b>Address</b></label>
-                 <input type="text" value="${employee.address}" name='address'>
+                 <label for="address"><b>Address</b></label>
+                 <input type="text" value="${employee.address}" name='address' ${(user.rank != "admin") ? "readonly" : ''}>
 
-                 <label for="Address"><b>Postal Code</b></label>
-                 <input type="text" value="${employee.postalCode}" name='postalcode'>
+                 <label for="postalcode"><b>Postal Code</b></label>
+                 <input type="text" value="${employee.postalCode}" name='postalcode' ${(user.rank != "admin") ? "readonly" : ''}>
 
-                 <label for="Address"><b>City</b></label>
-                 <input type="text" value="${employee.city}" name='city'>
+                 <label for="city"><b>City</b></label>
+                 <input type="text" value="${employee.city}" name='city' ${(user.rank != "admin") ? "readonly" : ''}>
 
-                 <label for="Address"><b>Email</b></label>
-                 <input type="text" value="${employee.mail}" name='email'>
+                 <label for="email"><b>Email</b></label>
+                 <input type="text" value="${employee.mail}" name='email' ${(user.rank != "admin") ? "readonly" : ''}>
             <hr>
-            <button type="submit" name="update" class="registerbtn">Save</button>
+            <button type="submit" name="update" class="registerbtn" ${(user.rank != "admin") ? "readonly" : ''}>Save</button>
             <button type="submit" name="cancel" class="registerbtn">Cancel</button>
             </form>
         </div>

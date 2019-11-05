@@ -65,8 +65,9 @@ public class DBAction {
         try {
             while (rs.next()) {
                 User userBean = new User();
-                userBean.setLogin(rs.getString("LOGIN"));
+                userBean.setUsername(rs.getString("LOGIN"));
                 userBean.setPassword(rs.getString("PWD"));
+                userBean.setRank(rs.getString("RANK"));
 
                 listUsers.add(userBean);
             }
@@ -128,17 +129,17 @@ public class DBAction {
      * @param userInput
      * @return
      */
-    public boolean checkCredentials(User userInput) {
-        boolean testCheck = false;
+    public User checkCredentials(User userInput) {
         listUsers = getUsers();
+        User validUser = null;
 
         for (User userBase : listUsers) {
-            if (userBase.getLogin().equals(userInput.getLogin())
+            if (userBase.getUsername().equals(userInput.getUsername())
                     && userBase.getPassword().equals(userInput.getPassword())) {
-                testCheck = true;
+                validUser = userBase;
             }
         }
-        return testCheck;
+        return validUser;
     }
     
     public void AddEmployee(Employee aEmployee)

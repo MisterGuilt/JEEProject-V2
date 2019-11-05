@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
  
-                                <input type="submit" name="connexion" class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="connection" class="btn btn-info btn-md" value="submit">
                             </div>
                         </form>
                     </div>
