@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.m1.model;
 
 import java.sql.Connection;
@@ -15,20 +10,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static se.m1.Constants.*;
-import se.m1.Employee;
-import se.m1.User;
+import static se.m1.model.Constants.*;
+import se.m1.model.beans.Employee;
+import se.m1.model.beans.User;
 
-/**
- *
- * @author JAA
- */
 public class DBAction {
     Connection conn;
     Statement stmt;
     ResultSet rs;
     ArrayList<User> listUsers;
     ArrayList<Employee> listEmployees;
+    PreparedStatement st;
 
     public DBAction() {
         try {
@@ -61,7 +53,7 @@ public class DBAction {
 
     public ArrayList<User> getUsers() {
         listUsers = new ArrayList<>();
-        rs = getResultSet(SEL_QUERY_CREDENTIALS);
+        rs = getResultSet(QUERY_SELECT_CREDENTIALS);
         try {
             while (rs.next()) {
                 User userBean = new User();
@@ -79,7 +71,7 @@ public class DBAction {
 
     public ArrayList<Employee> getEmployees() {
         listEmployees = new ArrayList<>();
-        rs = getResultSet(QUERY_SEL_EMPLOYEES);
+        rs = getResultSet(QUERY_SELECT_ALL_EMPLOYEES);
         try {
             while (rs.next()) {
                 Employee oneEmployee = new Employee();
@@ -102,10 +94,10 @@ public class DBAction {
     }
     
        public Employee getOneEmployee(int employeeId) {
-        String rst = "SELECT * from EMPLOYEES WHERE id=" + employeeId;
         Employee specificEmployee = new Employee();
-        rs = getResultSet(rst);
         try {
+            st = conn.prepareStatement(QUERY_SELECT_EMPLOYEE + employeeId);
+            rs = st.executeQuery();
             rs.next();
             
             specificEmployee.setId(rs.getInt("ID"));
@@ -145,7 +137,7 @@ public class DBAction {
     public void AddEmployee(Employee aEmployee)
     {
         try {
-            PreparedStatement st = conn.prepareStatement(QUERY_ADD_EMPLOYEES);
+            st = conn.prepareStatement(QUERY_ADD_EMPLOYEES);
             st.setString(1, aEmployee.getName());
             st.setString(2, aEmployee.getFirstname());
             st.setString(3, aEmployee.getHomePhone());
@@ -166,9 +158,8 @@ public class DBAction {
     public void deleteEmployee(Employee anEmployee) {
 
         try {
-            String rst = "DELETE from EMPLOYEES WHERE id=" + anEmployee.getId()+"";
-            PreparedStatement st = conn.prepareStatement(rst);           
-            st.execute(); 
+            st = conn.prepareStatement(QUERY_DELETE_EMPLOYEE + anEmployee.getId());           
+            st.execute();
             st.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
@@ -178,7 +169,7 @@ public class DBAction {
     public void updateEmployee(Employee aEmployee)
     {
          try {
-            PreparedStatement st = conn.prepareStatement(QUERY_UPDATE_EMPLOYEE);
+            st = conn.prepareStatement(QUERY_UPDATE_EMPLOYEE);
             st.setString(1, aEmployee.getName());
             st.setString(2, aEmployee.getFirstname());
             st.setString(3, aEmployee.getHomePhone());
@@ -196,5 +187,4 @@ public class DBAction {
             Logger.getLogger(DBAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

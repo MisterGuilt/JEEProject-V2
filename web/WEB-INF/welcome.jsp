@@ -1,12 +1,6 @@
-<%-- 
-    Document   : welcome
-    Created on : 15 oct. 2019, 09:36:23
-    Author     : Anil DEVADAS
---%>
-
 <%@page import="java.util.ArrayList"%>
-<%@page import="se.m1.User"%>
-<%@page import="se.m1.Employee"%>
+<%@page import="se.m1.model.beans.User"%>
+<%@page import="se.m1.model.beans.Employee"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -25,9 +19,10 @@
     </head>
     <body>
         <form method='post' name='myform' action='Controller'>
-        <h1 style="float:left;"> Welcome, <c:out value="${user.username} (${user.rank})"/></h1>
+        <h1 style="float:left;">Hello ${user.username}, your rank is (${user.rank})</h1>
         <h1 style="float:right;">Log Out<button type="submit" name="logout"><i class="material-icons">power_settings_new</i></button></h1>
-            
+        <br>
+        <c:if test="${!empty errKey}"><h1 style="color:red;"><c:out value="${errKey}"/></h1></c:if>
             <table border="1" class="table">
                 <thead
                 <tr>

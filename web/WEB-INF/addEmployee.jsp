@@ -1,15 +1,10 @@
-<%-- 
-    Document   : addEmployee
-    Created on : 15 oct. 2019, 10:13:19
-    Author     : Anil DEVADAS
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Employee Management Project</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <style>
         body {
           font-family: Arial, Helvetica, sans-serif;
@@ -76,11 +71,18 @@
 </style>
     </head>
     <body>
-         <div class="container">
-            <h1>Add an Employee</h1>
-            <p>Please fill the form to add a new employee</p>
-            <hr>
+         <div class="header">
            <form method='post' name='myform' action='Controller'>
+                <h1 style="float:left;">Hello ${user.username}, your rank is (${user.rank})</h1>
+                <h1 style="float:right;">Log Out<button type="submit" name="logout"><i class="material-icons">power_settings_new</i></button></h1>
+                <br/>
+           </form>
+         </div>
+         <div class="container">
+           <h1>Add an Employee</h1>
+           <p>Please fill the form to add a new employee</p>
+           <hr>
+           <form method='post' name='myform' action='Controller'> 
             <label for="name"><b>Name</b></label>
             <input type="text" placeholder="Enter Name" name='name'>
 
