@@ -1,9 +1,5 @@
 package se.m1.model;
 
-/**
- *
- * @author Anil DEVADAS
- */
 public class Constants {
     
     //Database data
@@ -37,7 +33,8 @@ public class Constants {
     public static final String FRM_EMPLOYEE_POSTALCODE = "postalcode";
     public static final String FRM_EMPLOYEE_CITY = "city";
     public static final String FRM_EMPLOYEE_EMAIL = "email";
-    
+
+    //Database queries
     //Select credentials for authentication
     public static final String QUERY_SELECT_CREDENTIALS = "SELECT * from CREDENTIALS";
     

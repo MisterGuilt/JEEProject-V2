@@ -1,7 +1,6 @@
 package se.m1.model;
 
 import java.sql.Connection;
-import java.util.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +13,10 @@ import static se.m1.model.Constants.*;
 import se.m1.model.beans.Employee;
 import se.m1.model.beans.User;
 
+/**
+ *
+ * A set of methods to interact with the database
+ */
 public class DBAction {
     Connection conn;
     Statement stmt;
@@ -21,7 +24,12 @@ public class DBAction {
     ArrayList<User> listUsers;
     ArrayList<Employee> listEmployees;
     PreparedStatement st;
+    Employee specificEmployee;
+    User validUser;
 
+    /**
+     *  Constructor that creates a connection to the database
+     */
     public DBAction() {
         try {
             conn = DriverManager.getConnection(URL, USER, PWD);
@@ -30,6 +38,10 @@ public class DBAction {
         }
     }
 
+    /**
+     * Creates a Statement object to communicate with the database
+     * @return A Statement object
+     */
     public Statement getStatement() {
         try {
             stmt = conn.createStatement();
@@ -40,9 +52,15 @@ public class DBAction {
 
     }
 
+    /**
+     * Queries the database with the query provided as a parameter
+     * @param query
+     *      The query to execute
+     * @return A ResultSet containing the lines matching the query
+     */
     public ResultSet getResultSet(String query) {
-        stmt = getStatement();
         try {
+            stmt = getStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
@@ -51,10 +69,14 @@ public class DBAction {
 
     }
 
+    /**
+     * Queries the database to retrieve all credentials
+     * @return An ArrayList of the users registered in the database
+     */
     public ArrayList<User> getUsers() {
         listUsers = new ArrayList<>();
-        rs = getResultSet(QUERY_SELECT_CREDENTIALS);
         try {
+            rs = getResultSet(QUERY_SELECT_CREDENTIALS);
             while (rs.next()) {
                 User userBean = new User();
                 userBean.setUsername(rs.getString("LOGIN"));
@@ -69,10 +91,14 @@ public class DBAction {
         return listUsers;
     }
 
+    /**
+     * Queries the database to retrieve all the employees
+     * @return An ArrayList of all the employees in the database
+     */
     public ArrayList<Employee> getEmployees() {
         listEmployees = new ArrayList<>();
-        rs = getResultSet(QUERY_SELECT_ALL_EMPLOYEES);
         try {
+            rs = getResultSet(QUERY_SELECT_ALL_EMPLOYEES);
             while (rs.next()) {
                 Employee oneEmployee = new Employee();
                 oneEmployee.setId(rs.getInt("ID"));
@@ -93,8 +119,14 @@ public class DBAction {
         return listEmployees;
     }
     
-       public Employee getOneEmployee(int employeeId) {
-        Employee specificEmployee = new Employee();
+    /**
+     * Retrieves a specific employee using the ID provided as a parameter
+     * @param employeeId
+     *      The ID of the employee to retrieve
+     * @return An Employee object matching the one requested via ID
+     */
+    public Employee getOneEmployee(int employeeId) {
+        specificEmployee = new Employee();
         try {
             st = conn.prepareStatement(QUERY_SELECT_EMPLOYEE + employeeId);
             rs = st.executeQuery();
@@ -117,13 +149,15 @@ public class DBAction {
     }
 
     /**
-     *
+     * Verifies if the credentials submitted by the user match a registered
+     * user in the database, and returns a User object if there is a match
      * @param userInput
-     * @return
+     *      The credentials entered by the user
+     * @return A User object defining what account the user has logged into
      */
     public User checkCredentials(User userInput) {
         listUsers = getUsers();
-        User validUser = null;
+        validUser = null;
 
         for (User userBase : listUsers) {
             if (userBase.getUsername().equals(userInput.getUsername())
@@ -134,6 +168,11 @@ public class DBAction {
         return validUser;
     }
     
+    /**
+     * Adds an employee to the database
+     * @param aEmployee
+     *      The employee to add to the database
+     */
     public void AddEmployee(Employee aEmployee)
     {
         try {
@@ -155,10 +194,15 @@ public class DBAction {
         }
     }
     
-    public void deleteEmployee(Employee anEmployee) {
+    /**
+     * Removes an employee from the database
+     * @param employeeId
+     *      The ID of the employee to remove
+     */
+    public void deleteEmployee(int employeeId) {
 
         try {
-            st = conn.prepareStatement(QUERY_DELETE_EMPLOYEE + anEmployee.getId());           
+            st = conn.prepareStatement(QUERY_DELETE_EMPLOYEE + employeeId);           
             st.execute();
             st.close();
         } catch (SQLException ex) {
@@ -166,6 +210,11 @@ public class DBAction {
         }
     }
     
+    /**
+     * Updates information on a specific employee
+     * @param aEmployee
+     *      The employee data to update
+     */
     public void updateEmployee(Employee aEmployee)
     {
          try {
