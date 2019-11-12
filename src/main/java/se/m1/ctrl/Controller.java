@@ -28,7 +28,6 @@ public class Controller extends HttpServlet {
     
     @EJB
     private UserSB userSB;
-    ArrayList<User> listOfUsers;
     @EJB
     private EmployeesSB employeeSB;
     ArrayList<Employees> listOfEmployees;
@@ -41,9 +40,6 @@ public class Controller extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        listOfUsers = new ArrayList<>();
-        listOfUsers.addAll(userSB.getUsers());
-
         currentSession = request.getSession(false);
         
         //If the user tries to log in
@@ -178,7 +174,7 @@ public class Controller extends HttpServlet {
                 request.getRequestDispatcher(JSP_GOODBYE_PAGE).forward(request, response);
             }
         }
-        //Just in case some freak accident happens, redirect to the login page
+        //If nothing matches, redirect to the login page
         else
         {
             request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
