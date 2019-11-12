@@ -6,7 +6,7 @@ Employee login is empl, empl
 
 Admin login is admin, admin
 
-Javadoc can be found at /target/site/apidocs/index.html
+Javadoc can be generated from the comments
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
