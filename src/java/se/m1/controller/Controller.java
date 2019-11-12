@@ -1,30 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Control;
+package se.m1.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import se.m1.User;
+import se.m1.model.beans.User;
 import se.m1.model.DBAction;
-import static se.m1.Constants.*;
-import se.m1.Employee;
+import static se.m1.model.Constants.*;
+import se.m1.model.beans.Employee;
 
 /**
- * @author JAA
+ *
+ * The servlet controller class which handles request processing
+ * 
  */
-
 public class Controller extends HttpServlet {
     DBAction dba;
-     User userInput;
-     Employee myEmployee;
+    User userInput;
+    Employee myEmployee;
+    User validUser;
+    ArrayList<Employee> listEmployees;
+    boolean isAdmin;
+    int employeeId;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,40 +47,37 @@ public class Controller extends HttpServlet {
             userInput.setUsername(request.getParameter(FRM_USERNAME_FIELD));
             userInput.setPassword(request.getParameter(FRM_PWD_FIELD));
             
-            User validUser = null;
+            
             validUser = dba.checkCredentials(userInput);
             
             if (validUser != null) {
                 currentSession = request.getSession();
                 currentSession.setAttribute("user", validUser);
                 
-                request.setAttribute("empList", dba.getEmployees());
-                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                redirectToWelcome(request, response);
             } else {
-                request.setAttribute("errKey", ERR_MESSAGE);
+                request.setAttribute("errKey", ERR_INVALID_CREDENTIALS);
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
         }
         else if (currentSession != null)
         {
-            boolean isAdmin = false;
+            isAdmin = false;
             if(((User)(currentSession.getAttribute("user"))).getRank().equals("admin")) isAdmin = true;
             
             if (request.getParameter("add") != null)
             {
                 if (isAdmin == false)
                 {
-                    request.setAttribute("empList", dba.getEmployees());
-                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                    redirectToWelcome(request, response);
                 }
                 request.getRequestDispatcher(JSP_ADD_PAGE).forward(request, response);
             }
             else if (request.getParameter("addbutton") != null)
             {
-                if (isAdmin == false) request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                if (isAdmin == false)
                 {
-                    request.setAttribute("empList", dba.getEmployees());
-                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                    redirectToWelcome(request, response);
                 }
                 myEmployee = new Employee();
                 myEmployee.setName(request.getParameter(FRM_EMPLOYEE_NAME));
@@ -94,40 +91,48 @@ public class Controller extends HttpServlet {
                 myEmployee.setMail(request.getParameter(FRM_EMPLOYEE_EMAIL));
 
                 dba.AddEmployee(myEmployee);
-                request.setAttribute("empList", dba.getEmployees());
-                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                redirectToWelcome(request, response);
             }
             else if (request.getParameter("detail") != null)
             {
-                int employeeId = Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID));
-                request.setAttribute("employee", dba.getOneEmployee(employeeId));
-                request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
+                if(request.getParameter(FRM_EMPLOYEE_ID) == null)
+                {
+                    redirectToWelcome(request, response);
+                }
+                else
+                {
+                    employeeId = Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID));
+                    request.setAttribute("employee", dba.getOneEmployee(employeeId));
+                    request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
+                }
             }
             else if (request.getParameter("cancel") != null)
             {
-                request.setAttribute("empList", dba.getEmployees());
-                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                redirectToWelcome(request, response);
             }
 
             else if (request.getParameter("delete") != null)
             {
-                if (isAdmin == false) request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                if (isAdmin == false)
                 {
-                    request.setAttribute("empList", dba.getEmployees());
-                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                    redirectToWelcome(request, response);
                 }
-                myEmployee = new Employee();
-                myEmployee.setId(Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID)));
-                dba.deleteEmployee(myEmployee);
-                request.setAttribute("empList", dba.getEmployees());
-                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                if(request.getParameter(FRM_EMPLOYEE_ID) == null)
+                {
+                    redirectToWelcome(request, response);
+                }
+                else
+                {
+                    employeeId = Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID));
+                    dba.deleteEmployee(employeeId);
+                    redirectToWelcome(request, response);
+                }
             }
             else if (request.getParameter("update") != null)
             {
-                if (isAdmin == false) request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                if (isAdmin == false)
                 {
-                    request.setAttribute("empList", dba.getEmployees());
-                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                    redirectToWelcome(request, response);
                 }
                 myEmployee = new Employee();
                 myEmployee.setId(Integer.parseInt(request.getParameter(FRM_EMPLOYEE_ID)));
@@ -141,19 +146,35 @@ public class Controller extends HttpServlet {
                 myEmployee.setCity(request.getParameter(FRM_EMPLOYEE_CITY));
                 myEmployee.setMail(request.getParameter(FRM_EMPLOYEE_EMAIL));
                 dba.updateEmployee(myEmployee);
-                request.setAttribute("empList", dba.getEmployees());
-                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                redirectToWelcome(request, response);
             }
             else if (request.getParameter("logout") != null)
             {
                 request.getSession().invalidate();
-                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+                request.getRequestDispatcher(JSP_GOODBYE_PAGE).forward(request, response);
             }
         }
         else
         {
             request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
         }
+    }
+    
+    /**
+     * Redirects to the employee list. Was put into a separate method
+     * because it is commonly used.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private void redirectToWelcome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        listEmployees = dba.getEmployees();
+        if (listEmployees.isEmpty()) request.setAttribute("errKey", ERR_NO_EMPLOYEES);
+        request.setAttribute("empList", listEmployees);
+        request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

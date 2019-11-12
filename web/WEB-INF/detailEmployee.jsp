@@ -1,12 +1,6 @@
-<%-- 
-    Document   : detailEmployee
-    Created on : 22 oct. 2019, 08:04:45
-    Author     : Anil DEVADAS
---%>
-
 <%@page import="java.util.ArrayList"%>
-<%@page import="se.m1.User"%>
-<%@page import="se.m1.Employee"%>
+<%@page import="se.m1.model.beans.User"%>
+<%@page import="se.m1.model.beans.Employee"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -16,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Employee Management Project</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <style>
         body {
           font-family: Arial, Helvetica, sans-serif;
@@ -83,9 +78,14 @@
     </head>
     <body>
          <div class="container">
-            <h1>Details of the Employee ${employee.name}  ${employee.firstname}</h1>
-            <hr>
             <form method='post' name='myform' action='Controller'>
+                <h1 style="float:left;">Hello ${user.username}, your rank is (${user.rank})</h1>
+                <h1 style="float:right;">Log Out<button type="submit" name="logout"><i class="material-icons">power_settings_new</i></button></h1>
+                <br>
+            </form>
+                <h1>Details for ${employee.name} ${employee.firstname}</h1>
+                <hr>
+            <form method='post' name='myform' action='Controller'>    
                  <input type="number" value="${employee.id}" name='id' hidden>
                  <label for="name"><b>Name</b></label>
                  <input type="text" value="${employee.name}" name='name' ${(user.rank != "admin") ? "readonly" : ''}>
