@@ -57,6 +57,7 @@ public class EmployeesSB {
     public void addEmployee(Employees myEmployee)
     {
         em.persist(myEmployee);
+                
     }
     
     /**
