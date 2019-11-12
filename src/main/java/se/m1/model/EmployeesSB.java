@@ -56,18 +56,7 @@ public class EmployeesSB {
      */
     public void addEmployee(Employees myEmployee)
     {
-        em.createNativeQuery("INSERT INTO Employees (NAME, FIRSTNAME, TELHOME, TELMOB, TELPRO, ADRESS, POSTALCODE, CITY, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
-                .setParameter(1, myEmployee.getName())
-                .setParameter(2, myEmployee.getFirstname())
-                .setParameter(3, myEmployee.getTelhome())
-                .setParameter(4, myEmployee.getTelmob())
-                .setParameter(5, myEmployee.getTelpro())
-                .setParameter(6, myEmployee.getAdress())
-                .setParameter(7, myEmployee.getPostalcode())
-                .setParameter(8, myEmployee.getCity())
-                .setParameter(9, myEmployee.getEmail())
-                .executeUpdate();
-                
+        em.persist(myEmployee);
     }
     
     /**
@@ -77,7 +66,8 @@ public class EmployeesSB {
      */
     public void updateEmployee(Employees myEmployee)
     {
-        em.createNativeQuery("UPDATE Employees SET NAME = ?, FIRSTNAME = ?, TELHOME = ?, TELMOB = ?, TELPRO = ?, ADRESS = ?, POSTALCODE = ?, CITY = ?, EMAIL = ? WHERE ID = ?")
+        em.merge(myEmployee);
+        /*em.createNativeQuery("UPDATE Employees SET NAME = ?, FIRSTNAME = ?, TELHOME = ?, TELMOB = ?, TELPRO = ?, ADRESS = ?, POSTALCODE = ?, CITY = ?, EMAIL = ? WHERE ID = ?")
                 .setParameter(1, myEmployee.getName())
                 .setParameter(2, myEmployee.getFirstname())
                 .setParameter(3, myEmployee.getTelhome())
@@ -88,6 +78,6 @@ public class EmployeesSB {
                 .setParameter(8, myEmployee.getCity())
                 .setParameter(9, myEmployee.getEmail())
                 .setParameter(10, myEmployee.getId())
-                .executeUpdate();
+                .executeUpdate();*/
     }
 }
