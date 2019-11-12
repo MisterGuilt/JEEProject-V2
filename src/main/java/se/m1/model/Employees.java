@@ -98,7 +98,7 @@ public class Employees implements Serializable {
     /**
      * Constructor with specific ID
      * @param id
-     *  ID of the new employee
+     *      ID of the new employee
      */
     public Employees(Integer id) {
         this.id = id;
@@ -106,16 +106,16 @@ public class Employees implements Serializable {
     
     /**
      * Constructor with a complete set of data
-     * @param id
-     * @param name
-     * @param firstname
-     * @param telhome
-     * @param telmob
-     * @param telpro
-     * @param adress
-     * @param postalcode
-     * @param city
-     * @param email 
+     * @param id Employee ID
+     * @param name Employee's last name
+     * @param firstname Employee's first name
+     * @param telhome Employee's home phone
+     * @param telmob Employee's mobile phone
+     * @param telpro Employee's work phone
+     * @param adress Employee's address
+     * @param postalcode Employee's postal code
+     * @param city Employee's city
+     * @param email Employee's email
      */
     public Employees(Integer id, String name, String firstname, String telhome, String telmob, String telpro, String adress, String postalcode, String city, String email) {
         this.id = id;

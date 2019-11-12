@@ -15,17 +15,6 @@ import se.m1.model.UserSB;
 import static se.m1.utls.Constants.*;
 
 public class Controller extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
     @EJB
     private UserSB userSB;
     ArrayList<User> listOfUsers;
@@ -38,7 +27,15 @@ public class Controller extends HttpServlet {
     HttpSession currentSession;
     boolean isAdmin;
     int employeeId;
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         listOfUsers = new ArrayList<>();

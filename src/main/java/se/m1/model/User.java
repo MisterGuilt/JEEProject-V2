@@ -74,10 +74,10 @@ public class User implements Serializable {
 
     /**
      * Constructor with a complete set of data
-     * @param id
-     * @param login
-     * @param pwd
-     * @param rank
+     * @param id ID of the user
+     * @param login Username of the user
+     * @param pwd Password of the user
+     * @param rank Rank of the user
      */
     public User(Integer id, String login, String pwd, String rank) {
         this.id = id;

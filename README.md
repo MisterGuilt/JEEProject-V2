@@ -1,8 +1,12 @@
 # JEEProject-V2
 
 This application requires a SQL database named "emanagement". Use the following script to generate the tables.
+
 Employee login is empl, empl
+
 Admin login is admin, admin
+
+Javadoc can be found at /target/site/apidocs/index.html
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
